@@ -11,4 +11,14 @@ class Expense extends Model
     protected $fillable = [
     	'name', 'expensedate', 'price', 'description', 'expense_category_id', 'restaurant_id'
     ];
+
+    public function expense_category()
+    {
+        return $this->belongsTo('App\ExpenseCategory');
+    }
+
+    public function restaurant()
+    {
+        return $this->belongsTo('App\RestaurantInfo');
+    }
 }

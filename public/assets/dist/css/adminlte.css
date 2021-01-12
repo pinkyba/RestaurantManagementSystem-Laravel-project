@@ -11897,13 +11897,15 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .user-panel img {
-  height: auto;
-  width: 2.1rem;
+  height: 3rem;
+  width: 3.2rem;
 }
 
 .user-panel .info {
   display: inline-block;
   padding: 5px 5px 5px 10px;
+  font-size: 20px;
+  margin-top: 6px;
 }
 
 .user-panel .status,
@@ -21604,7 +21606,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .widget-user-2 .widget-user-desc {
-  margin-top: 0;
+  margin-top: 2rem;
 }
 
 .widget-user-2 .widget-user-username,
@@ -21614,8 +21616,8 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .widget-user-2 .widget-user-image > img {
   float: left;
-  height: auto;
-  width: 65px;
+  height: 90px;
+  width: 110px;
 }
 
 .mailbox-messages > .table {

@@ -11,11 +11,16 @@ class MenuCategory extends Model
 	use SoftDeletes;
 	
     protected $fillable = [
-    	'name', 'restaurant_id'
+    	'name', 'status', 'restaurant_id'
     ];
 
     public function restaurant()
     {
         return $this->belongsTo('App\RestaurantInfo');
+    }
+
+    public function menu_items()
+    {
+        return $this->hasMany('App\MenuItem');
     }
 }

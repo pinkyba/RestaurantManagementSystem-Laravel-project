@@ -68,7 +68,16 @@
 
                 <p class="text-muted">{{$restaurant->description}}</p>
 
-                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                <div class="btn-group btn-group-sm">
+                  
+                  <a href="{{route('restaurantInfos.edit',$restaurant->id)}}" class="btn btn-warning mr-2"><i class="fas fa-cog px-5 pt-2">&nbsp;Edit</i></a>
+
+                  <form method="post" action="{{route('restaurantInfos.destroy',$restaurant->id)}}" onsubmit="return confirm('Are you sure?')" class="d-inline-block">
+                          @csrf
+                          @method('DELETE')
+                  <button type="submit" name="btn-delete" class="btn btn-danger"><i class="fas fa-trash px-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete</i></a>
+                  </form>
+                </div>
               </div>
               <!-- /.card-body -->
             </div>

@@ -40,9 +40,10 @@ class LoginController extends Controller
 
     protected function redirectTo(){
         $roles = auth()->user()->getRoleNames();
-
+        //print($roles[0]);
         // Check user role
         switch ($roles[0]) {
+
             case 'admin':
                 return '/dashboard';  // call with url address '/dashboard'
                 break;
@@ -50,9 +51,25 @@ class LoginController extends Controller
             case 'vendor':
                 return '/vendordashboard';  // call with url address '/dashboard'
                 break;
+
+            case 'waiter':
+                return '/waiterdashboard';  // call with url address '/dashboard'
+                break;
+
+            case 'chef':
+                return '/chefdashboard';  // call with url address '/dashboard'
+                break;
+
+            case 'barcounterstaff':
+                return '/barcounterstaffdashboard';  // call with url address 
+                break;
+
+            case 'cashier':
+                return '/cashierdashboard';  // call with url address '/dashboard'
+                break;
             
             default:
-                return '/';
+                return '/';  // call with url address '/dashboard'
                 break;
         }
     }

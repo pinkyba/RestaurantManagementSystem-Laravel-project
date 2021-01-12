@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\TableInfo;
 use Illuminate\Http\Request;
+use App\Staff;
+use Auth;
 
 class TableInfoController extends Controller
 {
@@ -14,7 +16,13 @@ class TableInfoController extends Controller
      */
     public function index()
     {
-        //
+        $staff = Staff::where('user_id',Auth::id())->get();
+        $restaurant_id = $staff[0]->restaurant_id;
+        
+        $table_infos = TableInfo::where('restaurant_id',$restaurant_id)
+                            ->orderBy('id', 'desc')
+                            ->get();
+        return view('vendor.table_infos.index',compact('table_infos'));
     }
 
     /**
@@ -24,7 +32,7 @@ class TableInfoController extends Controller
      */
     public function create()
     {
-        //
+        return view('vendor.table_infos.create');
     }
 
     /**
@@ -35,7 +43,25 @@ class TableInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validation
+        $request->validate([
+            "name" => "required",
+            "capacity" => "required",
+        ]);
+
+        $table_infos = new TableInfo;
+        $table_infos->name = $request->name;
+        $table_infos->capacity = $request->capacity;
+
+        // restaurant_id
+        $staff = Staff::where('user_id',Auth::id())->get();
+        $restaurant_id = $staff[0]->restaurant_id;
+        //print_r($restaurant_id);
+
+        $table_infos->restaurant_id = $restaurant_id;
+        $table_infos->save();
+
+        return redirect()->route('table_infos.index');
     }
 
     /**
@@ -57,7 +83,7 @@ class TableInfoController extends Controller
      */
     public function edit(TableInfo $tableInfo)
     {
-        //
+        return view('vendor.table_infos.edit',compact('tableInfo'));
     }
 
     /**
@@ -69,7 +95,18 @@ class TableInfoController extends Controller
      */
     public function update(Request $request, TableInfo $tableInfo)
     {
-        //
+        // validation
+        $request->validate([
+            "name" => "required",
+            "capacity" => "required",
+        ]);
+
+       
+        $tableInfo->name = $request->name;
+        $tableInfo->capacity = $request->capacity;
+        $tableInfo->save();
+
+        return redirect()->route('table_infos.index');
     }
 
     /**
@@ -80,6 +117,7 @@ class TableInfoController extends Controller
      */
     public function destroy(TableInfo $tableInfo)
     {
-        //
+        $tableInfo->delete();
+        return redirect()->route('table_infos.index');
     }
 }

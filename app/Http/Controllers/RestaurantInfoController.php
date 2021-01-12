@@ -91,7 +91,7 @@ class RestaurantInfoController extends Controller
      */
     public function edit(RestaurantInfo $restaurantInfo)
     {
-        //
+        return view('admin.restaurantInfos.edit',compact('restaurantInfo'));
     }
 
     /**
@@ -103,7 +103,31 @@ class RestaurantInfoController extends Controller
      */
     public function update(Request $request, RestaurantInfo $restaurantInfo)
     {
-        //
+        
+        //upload
+        if($request->file()){
+            // fileName => 624872374523_a.jpg
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+
+            // categoryimg/624872374523_a.jpg
+            $filePath = $request->file('photo')->storeAs('restaurantimg',$fileName, 'public');
+
+            $path = '/storage/'.$filePath;
+            
+        }else{
+            $path = $request->oldphoto;
+        }
+
+        $restaurantInfo->name = $request->name;
+        $restaurantInfo->photo = $path;
+        $restaurantInfo->phno = $request->phno;
+        $restaurantInfo->email = $request->email;
+        $restaurantInfo->address = $request->address;
+        $restaurantInfo->description = $request->description;
+        $restaurantInfo->save();
+
+        // return
+        return redirect()->route('restaurantInfos.index');
     }
 
     /**
@@ -114,6 +138,7 @@ class RestaurantInfoController extends Controller
      */
     public function destroy(RestaurantInfo $restaurantInfo)
     {
-        //
+        $restaurantInfo->delete();
+        return redirect()->route('restaurantInfos.index');
     }
 }

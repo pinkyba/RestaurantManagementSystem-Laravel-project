@@ -40,10 +40,10 @@
                         <h2 class="lead"><b>{{$staff->user->name}}</b></h2>
                         <p class="text-muted text-sm">{{$staff->restaurant->name}} </p>
                         <ul class="ml-4 mb-0 fa-ul text-muted">
-                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> <b>NRC No:</b> {{$staff->NRCno}} </li>
-                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> <b>Address:</b> {{$staff->address}} </li>
-                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> <b>Phone:</b> {{$staff->phno}} </li>
-                          <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> <b>Email:</b> {{$staff->user->email}} </li>
+                          <li class="small"><span class="fa-li"><i class="far fa-id-card"></i></span> <b>NRC No:</b> {{$staff->NRCno}} </li>
+                          <li class="small"><span class="fa-li"><i class="fas fa-map-marker-alt"></i></span> <b>Address:</b> {{$staff->address}} </li>
+                          <li class="small"><span class="fa-li"><i class="fas fa-mobile-alt"></i></span> <b>Phone:</b> {{$staff->phno}} </li>
+                          <li class="small"><span class="fa-li"><i class="fas fa-envelope-open-text"></i></span> <b>Email:</b> {{$staff->user->email}} </li>
                         </ul>
                       </div>
                       <div class="col-5 text-center">

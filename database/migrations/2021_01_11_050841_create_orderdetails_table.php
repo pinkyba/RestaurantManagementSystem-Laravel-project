@@ -18,7 +18,7 @@ class CreateOrderdetailsTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('menu_item_id');
             $table->integer('qty');
-
+            $table->string('status')->default('order');
             $table->foreign('menu_item_id')->references('id')->on('menu_items')->onDelete('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             

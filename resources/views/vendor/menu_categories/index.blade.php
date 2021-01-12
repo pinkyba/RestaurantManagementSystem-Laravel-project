@@ -12,8 +12,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dashboardpage')}}">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
+              <li class="breadcrumb-item"><a href="{{route('vendordashboard')}}">Home</a></li>
+              <li class="breadcrumb-item active">Menu Categories</li>
             </ol>
           </div>
         </div>
@@ -28,7 +28,7 @@
             <div class="card">
               <div class="card-header">
                 
-                <a href="{{route('menu_categories.create')}}" class="btn btn-info float-right">Add New</a>
+              <a href="{{route('menu_categories.create')}}" class="btn btn-info float-right">Add New</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -37,6 +37,7 @@
                   <tr>
                     <th>No</th>
                     <th>Name</th>
+                    <th>Status</th>
                     <th>Restaurant</th>
                     <th>Action</th>
                     
@@ -48,12 +49,19 @@
                     <tr>
                       <td>{{$i++}}</td>
                       <td>{{$menu_category->name}}</td>
+                      <td>{{$menu_category->status}}</td>
                       <td>{{$menu_category->restaurant->name}}</td>
                       <td> 
                         <div class="btn-group btn-group-sm">
-                          <a href="#" class="btn btn-info mr-2"><i class="fas fa-info-circle"></i></a>
-                          <a href="#" class="btn btn-warning mr-2"><i class="fas fa-cog"></i></a>
-                          <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                          
+                          <a href="{{route('menu_categories.edit',$menu_category->id)}}" class="btn btn-sm btn-warning mr-2"><i class="fas fa-cog"></i></a>
+
+                          <form method="post" action="{{route('menu_categories.destroy',$menu_category->id)}}" onsubmit="return confirm('Are you sure?')" class="d-inline-block">
+                          @csrf
+                          @method('DELETE')
+                            <button type="submit" name="btn-delete" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                          </form>
+
                         </div>
                       </td>
                     </tr>

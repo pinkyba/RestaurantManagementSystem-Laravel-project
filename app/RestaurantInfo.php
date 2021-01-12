@@ -22,4 +22,24 @@ class RestaurantInfo extends Model
     {
         return $this->hasMany('App\MenuCategory');
     }
+
+    public function expensecategories()
+    {
+        return $this->hasMany('App\ExpenseCategory');
+    }
+
+    public function tableinfos()
+    {
+        return $this->hasMany('App\TableInfo');
+    }
+
+    public function expenses()
+    {
+        return $this->hasMany('App\Expense');
+    }
+
+    public function menu_items()
+    {
+        return $this->hasMany('App\MenuItem');
+    }
 }

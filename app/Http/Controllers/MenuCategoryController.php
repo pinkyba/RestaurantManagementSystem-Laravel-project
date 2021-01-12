@@ -16,7 +16,12 @@ class MenuCategoryController extends Controller
      */
     public function index()
     {
-        $menu_categories = MenuCategory::orderBy('id','desc')->get();
+        $staff = Staff::where('user_id',Auth::id())->get();
+        $restaurant_id = $staff[0]->restaurant_id;
+
+        $menu_categories = MenuCategory::where('restaurant_id',$restaurant_id)
+                            ->orderBy('id', 'desc')
+                            ->get();
         return view('vendor.menu_categories.index',compact('menu_categories'));
     }
 
@@ -45,6 +50,7 @@ class MenuCategoryController extends Controller
 
         $menu_categories = new MenuCategory;
         $menu_categories->name = $request->name;
+        $menu_categories->status = $request->status;
 
         // restaurant_id
         $staff = Staff::where('user_id',Auth::id())->get();
@@ -77,7 +83,7 @@ class MenuCategoryController extends Controller
      */
     public function edit(MenuCategory $menuCategory)
     {
-        //
+        return view('vendor.menu_categories.edit',compact('menuCategory'));
     }
 
     /**
@@ -89,7 +95,16 @@ class MenuCategoryController extends Controller
      */
     public function update(Request $request, MenuCategory $menuCategory)
     {
-        //
+        // validation
+        $request->validate([
+            "name" => "required|max:35'",
+        ]);
+
+       
+        $menuCategory->name = $request->name;
+        $menuCategory->save();
+
+        return redirect()->route('menu_categories.index');
     }
 
     /**
@@ -100,6 +115,7 @@ class MenuCategoryController extends Controller
      */
     public function destroy(MenuCategory $menuCategory)
     {
-        //
+        $menuCategory->delete();
+        return redirect()->route('menu_categories.index');
     }
 }

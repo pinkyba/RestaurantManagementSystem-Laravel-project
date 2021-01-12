@@ -11,8 +11,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('menu_categories.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Product Category Form</li>
+              <li class="breadcrumb-item"><a href="{{route('vendordashboard')}}">Home</a></li>
+              <li class="breadcrumb-item active">Menu Category Form</li>
             </ol>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">  
-                <h2 class="d-inline">Product Category Form</h2>              
+                <h2 class="d-inline">Menu Category Form</h2>              
                 <a href="{{route('menu_categories.index')}}" class="btn btn-info float-right"><i class="fas fa-angle-double-left"></i></a>
               </div>
               
@@ -33,12 +33,18 @@
                   @csrf
                   <div class="form-group">
                     <label for="exampleInputName">Name</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputName" placeholder="Category Name" name="name">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputName" placeholder="Menu Category Name" name="name">
                     @error('name')
                       <div class="text-danger">{{ $message }}</div>
                     @enderror
                   </div>
-                  
+                  <div class="form-group">
+                    <label for="exampleInputstatus">Choose Menu Status</label>
+                    <select id="exampleInputstatus" class="form-control" name="status">
+                      <option value="bar">Bar Menu</option>
+                      <option value="chef">Chef Menu</option>
+                    </select> 
+                  </div>
                   <br>
                   <button type="submit" class="btn btn-info">Save</button>
                 </form>

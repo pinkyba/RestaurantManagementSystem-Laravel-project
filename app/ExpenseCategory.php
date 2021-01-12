@@ -12,4 +12,14 @@ class ExpenseCategory extends Model
     protected $fillable = [
     	'name', 'restaurant_id'
     ];
+
+    public function restaurant()
+    {
+        return $this->belongsTo('App\RestaurantInfo');
+    }
+
+    public function expenses()
+    {
+        return $this->hasMany('App\Expense');
+    }
 }

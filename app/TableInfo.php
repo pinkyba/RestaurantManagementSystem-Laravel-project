@@ -12,4 +12,14 @@ class TableInfo extends Model
     protected $fillable = [
     	'name', 'capacity', 'restaurant_id'
     ];
+
+    public function restaurant()
+    {
+        return $this->belongsTo('App\RestaurantInfo');
+    }
+
+    public function orders($value='')
+    {
+        return $this->hasMany('App\Order');
+    }
 }

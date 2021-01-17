@@ -25,18 +25,25 @@ class CashierController extends Controller
 
     public function cashierdetail($id){
         $staff = Staff::where('user_id',Auth::id())->get();
-        $order = Order::find($id);
 
-        return view('cashier.cashierdetail',compact('order','staff'));
+        $orders = Order::where('table_id',$id)
+                        ->where('status','served')
+                        ->get();
+
+        return view('cashier.cashierdetail',compact('orders','staff'));
     }
 
     public function cashierdetailprint($id){
         $staff = Staff::where('user_id',Auth::id())->get();
-        $order = Order::find($id);
+        $orders = Order::where('table_id',$id)
+                        ->where('status','served')
+                        ->get();
 
-        $order->status = 'completed';
-        $order->save();
-        
-        return view('cashier.cashierdetailprint',compact('order','staff'));
+        foreach ($orders as $order) {
+            $order->status = 'completed';
+            $order->save();
+        }
+       
+        return view('cashier.cashierdetailprint',compact('orders','staff'));
     }
 }

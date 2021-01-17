@@ -141,40 +141,50 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
+  <section class="content">
+    <div class="container-fluid">
         
-        <div class="row">
+      <div class="row">
 
-          @foreach($tables as $table)
+        @foreach($tables as $table)
 
-          @php $state = 0; @endphp
+        @php 
+          $state = 0; 
 
-            @foreach($orders as $order)
+        @endphp
+
+          @foreach($orders as $order)
+          {{-- @php print_r($order->id) @endphp --}}
             @if($order->table_id == $table->id)
+            
               @if($order->status == 'order' || $order->status == 'served')
-                @php $state = 1; $orderid = $order->id; @endphp
+                @php 
+                  $state = 1;
+                  $tableid = $order->table_id;
+                  
+                @endphp
               @endif
             @endif
-            @endforeach
-            
-            @if($state == 1)
-              <a href="{{route('tableorderdisplay',$orderid)}}" class="btn btn-warning ml-4 mb-4"><p class="text-lg-center px-4 pt-3">{{$table->name}}</p><p>{{$table->capacity}} person</p></a>
-
-            @else
-              <a href="{{route('tableno',['id'=>$table->id,'menuCategoryid'=>0])}}" class="btn btn-info ml-4 mb-4"><p class="text-lg-center px-4 pt-3">{{$table->name}}</p><p>{{$table->capacity}} person</p></a>
-            @endif
-
           @endforeach
-
           
+          @if($state == 1)
+            {{-- @php print_r($tableid); @endphp --}}
+            <a href="{{route('tableorderdisplay',$tableid)}}" class="btn btn-warning ml-4 mb-4"><p class="text-lg-center px-4 pt-3">{{$table->name}}</p><p>{{$table->capacity}} person</p></a>
 
-        </div>
-        <br>
+          @else
+            <a href="{{route('tableno',['id'=>$table->id,'menuCategoryid'=>0])}}" class="btn btn-info ml-4 mb-4"><p class="text-lg-center px-4 pt-3">{{$table->name}}</p><p>{{$table->capacity}} person</p></a>
+          @endif
+
+        @endforeach
+
         
-        
-      </div><!-- /.container-fluid -->
-    </section>
+
+      </div>
+      <br>
+      
+      
+    </div><!-- /.container-fluid -->
+  </section>
     <!-- /.content -->
   </div>
 

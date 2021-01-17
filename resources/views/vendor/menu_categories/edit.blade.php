@@ -42,16 +42,11 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputexpense">Choose Menu Status</label>
-                    <select id="exampleInputexpense" class="form-control" name="status">
-                      @foreach($expense_categories as $expense_category)
-                      @if($expense_category->id == $expense->expense_category->id)
-                        <option value="{{$expense_category->id}}" selected="">{{$expense_category->name}}</option>
-                      @else
-                        <option value="{{$expense_category->id}}">{{$expense_category->name}}</option>
-                      @endif
-                      @endforeach
-                    </select>                    
+                    <label for="exampleInputstatus">Choose Menu Status</label>
+                    <select id="exampleInputstatus" class="form-control" name="status">
+                      <option value="bar">Bar Menu</option>
+                      <option value="chef">Chef Menu</option>
+                    </select> 
                   </div>
                   <br>
                   <button type="submit" class="btn btn-info">Update</button>

@@ -44,7 +44,14 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            
+            @foreach($orders as $order)
+              @php
+                $codeno = $order->codeno;
+                $tableName = $order->table->name;
+                $tableid = $order->table->id;
+                $orderdate = $order->orderdate;
+              @endphp
+            @endforeach
             <!-- Main content -->
             <div class="invoice p-3 mb-3">
               <!-- title row -->
@@ -52,7 +59,7 @@
                 <div class="col-12">
                   <h4>
                     <i class="fas fa-globe"></i> {{$staff[0]->restaurant->name}}
-                    <small class="float-right">Date: {{$order->orderdate}}</small>
+                    <small class="float-right">Date: {{$orderdate}}</small>
                   </h4>
                 </div>
                 <!-- /.col -->
@@ -72,14 +79,14 @@
                 <div class="col-sm-4 invoice-col">
                   To
                   <address>
-                    <strong>{{$order->table->name}}</strong><br>
+                    <strong>{{$tableName}}</strong><br>
                     
                   </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
                   <b>Invoice #</b><br>
-                  <b>Order ID:</b> {{$order->codeno}}<br>
+                  <b>Order ID:</b> {{$codeno}}<br>
                 </div>
                 <!-- /.col -->
               </div>
@@ -106,6 +113,7 @@
                         $price = 0;
                         $orderid = $order->id;
                       @endphp
+                    @foreach($orders as $order)
                     @foreach($order->menu_items as $menu_item)
                       <tr>
                         <td>{{$i++}}</td>
@@ -131,6 +139,7 @@
                         <td>{{number_format($subtotal)}} Ks</td>
                       </tr>
                       @endforeach
+                    @endforeach
                       <tr>
                         <td colspan="4" class="text-right"><b>Total Amount</b></td>
                         <td><b>{{number_format($total)}} Ks</b></td>
@@ -147,7 +156,7 @@
               <div class="row no-print">
                 <div class="col-12">
                 
-                  <a href="{{route('cashierdetailprint',$orderid)}}" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
+                  <a href="{{route('cashierdetailprint',$tableid)}}" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
                     Payment
                   </a>
                 </div>

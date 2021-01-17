@@ -83,7 +83,8 @@ class MenuCategoryController extends Controller
      */
     public function edit(MenuCategory $menuCategory)
     {
-        return view('vendor.menu_categories.edit',compact('menuCategory'));
+        $menu_categories = MenuCategory::all();
+        return view('vendor.menu_categories.edit',compact('menuCategory','menu_categories'));
     }
 
     /**

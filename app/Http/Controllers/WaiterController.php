@@ -51,9 +51,11 @@ class WaiterController extends Controller
 
 
     public function tableorderdisplay($id){
-        $staff = Staff::where('user_id',Auth::id())->get();
-        $order = Order::find($id);
+        print_r($id);
 
-        return view('waiter.tableorderdisplay',compact('order','staff'));
+        $staff = Staff::where('user_id',Auth::id())->get();
+        $orders = Order::where('table_id',$id)->get();
+
+        return view('waiter.tableorderdisplay',compact('orders','staff'));
     }
 }

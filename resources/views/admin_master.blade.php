@@ -4,7 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Dashboard</title>
-
+  {{-- ajax token --}}
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -68,10 +70,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('assets/dist/img/me.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <x-admin-profile-component></x-admin-profile-component>
         </div>
       </div>
 
@@ -106,16 +108,45 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Reports                
+                Reports
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">4</span>           
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('admincurrentSale')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Current Sale Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('adminmonthSale')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Month Sale Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('adminyearSale')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Year Sale Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admindailySale')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daily Item Sale Report</p>
+                </a>
+              </li>
+              
+            </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+            <a href="{{route('adminorder')}}" class="nav-link">
+              <i class="fas fa-utensils mr-2 ml-1 fa-lg"></i>
               <p>
                 Orders
-                <span class="badge badge-info right">16</span>
+                
               </p>
             </a>
           </li>
@@ -130,7 +161,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="far fa-list-alt mr-2 ml-1 fa-lg"></i>
               <p>
                 Menu Categories
                 
@@ -139,32 +170,17 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="fas fa-file-invoice-dollar mr-2 ml-1 fa-lg"></i>
               <p>
                 Expense Categories
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
+                
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation + Sidebar</p>
-                </a>
-              </li>
-              
-            </ul>
+            
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="fas fa-comments-dollar mr-2 ml-1 fa-lg"></i>
               <p>
                 Menu Items
               </p>
@@ -172,7 +188,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="fas fa-file-invoice-dollar mr-2 ml-1 fa-lg"></i>
               <p>
                 Expenses
               </p>
@@ -336,5 +352,7 @@
     });
   });
 </script>
+
+@yield('script')
 </body>
 </html>

@@ -111,13 +111,13 @@ class OrderController extends Controller
     public function confirm($orderid,$menuid,$status)
     {
         $order = Order::find($orderid);
-
-        // update status in orderdetails(pivot table)
+        
+        //update status in orderdetails(pivot table)
         $order->menu_items()
             ->newPivotStatement()
             ->where('menu_item_id', '=', $menuid)
             ->update(array('status' => 'served'));
-
+        
         // update status of order table to 'served' if status of all orderdetails by each orderid is "served"
         $state = 1;
         foreach($order->menu_items as $menu_item) {
@@ -129,7 +129,7 @@ class OrderController extends Controller
                 break;
             }
         }
-        
+        //print_r($state);
         if($state == 1){
             $order->status = 'served';
             $order->save();

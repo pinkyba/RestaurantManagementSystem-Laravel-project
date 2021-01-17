@@ -145,7 +145,7 @@
       <div class="container-fluid">
         
         <div class="row">
-
+          @php $total = 0; @endphp
           @foreach($tables as $table)
 
           @php $state = 0; @endphp
@@ -154,14 +154,14 @@
             @if($order->table_id == $table->id)
               @if($order->status == 'served')
                 @php 
-                  $state = 1; $total = $order->total; $orderid=$order->id;
+                  $state = 1; $total += $order->total; $tableid = $order->table_id;
                 @endphp
               @endif
             @endif
             @endforeach
             
             @if($state == 1)
-              <a href="{{route('cashierdetail',$orderid)}}" class="btn btn-info ml-4 mb-4"><p class="text-lg-center px-4 pt-3" title="click to voucher">{{$table->name}}</p><p>{{number_format($total)}} Ks</p></a>
+              <a href="{{route('cashierdetail',$tableid)}}" class="btn btn-info ml-4 mb-4"><p class="text-lg-center px-4 pt-3" title="click to voucher"><p>Cash Voucher from</p>{{$table->name}}</p></a>
 
             @endif
 

@@ -82,8 +82,7 @@
         <div class="info">
           <a href="#" class="d-inline">{{$staff[0]->user->name}} | </a>
           <a href="#" class="d-inline">{{$staff[0]->user->roles[0]->name}}</a>
-        </div>
-        
+        </div>       
       </div>
 
       <!-- SidebarSearch Form -->

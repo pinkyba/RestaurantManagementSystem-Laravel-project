@@ -41,5 +41,8 @@ class Staff extends Model
         return $this->belongsTo('App\User');
     }
 
-    
+    public function orders($value='')
+    {
+        return $this->hasMany('App\Order');
+    }
 }

@@ -111,6 +111,7 @@
                   </li>
                   <li class="nav-item">
                     @if($menu_item->pivot->status == 'order')
+                    {{-- @php print_r($order->id); @endphp --}}
                       <a href="{{route('orders_confirm',['orderid'=>$order->id,'menuid'=>$menu_item->id,'status'=>'chef'])}}" class="nav-link">
                         State <span class="float-right badge-warning px-3 pb-1 rounded">{{$menu_item->pivot->status}}</span>
                       </a>

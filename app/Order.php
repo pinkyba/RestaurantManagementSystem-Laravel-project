@@ -24,4 +24,9 @@ class Order extends Model
                     ->withTimestamps();
     }
 
+    public function staff()
+    {
+        return $this->belongsTo('App\Staff');
+    }
+
 }

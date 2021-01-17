@@ -19,6 +19,24 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::middleware('role:admin')->group(function(){
 	//Route::get('/', 'AdminController@dashboard')->name('dashboardpage');
 	Route::get('dashboard', 'AdminController@dashboard')->name('dashboardpage');
+	Route::post('admindashboardFilter', 'AdminController@admindashboardFilter')->name('admindashboardFilter');
+
+	Route::get('adminorder', 'AdminController@adminorder')->name('adminorder');
+	Route::post('adminwaiter', 'AdminController@adminwaiter')->name('adminwaiter');
+	Route::post('adminOrderFilter', 'AdminController@adminOrderFilter')->name('adminOrderFilter');
+
+	Route::get('admincurrentSale', 'AdminController@admincurrentSale')->name('admincurrentSale');
+	Route::post('admincurrentSaleFilter', 'AdminController@admincurrentSaleFilter')->name('admincurrentSaleFilter');
+
+	Route::get('adminmonthSale', 'AdminController@adminmonthSale')->name('adminmonthSale');
+	Route::post('adminmonthSaleFilter', 'AdminController@adminmonthSaleFilter')->name('adminmonthSaleFilter');
+
+	Route::get('adminyearSale', 'AdminController@adminyearSale')->name('adminyearSale');
+	Route::post('adminyearSaleFilter', 'AdminController@adminyearSaleFilter')->name('adminyearSaleFilter');
+
+	Route::get('admindailySale', 'AdminController@admindailySale')->name('admindailySale');
+	Route::post('admindailySaleFilter', 'AdminController@admindailySaleFilter')->name('admindailySaleFilter');
+
 	Route::get('vendordashboard', 'VendorController@dashboard')->name('vendordashboard');
 
 });

@@ -1,0 +1,1 @@
+<a href="#" class="d-block">{{$user[0]->name}} | Admin</a>

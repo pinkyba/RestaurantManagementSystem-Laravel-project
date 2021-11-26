@@ -60,7 +60,7 @@ class AdminController extends Controller
     public function adminorder($value='')
     {
     	$restaurants = RestaurantInfo::all();
-    	$orders = Order::where('status','completed')->get();
+    	$orders = Order::orderBy('id','desc')->where('status','completed')->get();
 
         $restaurantid = 0;
 

@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        // You identified admin role in db with id 2, so your register user must be cutomer role.
+        // You identified admin role in db with id 1, so your register user must be customer role.
         // You should assign cutomer role with assignRole('customer')
         $user->assignRole('vendor');
         return $user;

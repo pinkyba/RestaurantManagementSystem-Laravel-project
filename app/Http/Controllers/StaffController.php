@@ -88,10 +88,12 @@ class StaffController extends Controller
               
         $staff->save();
 
+        // definte role
         $role_id = $request->role_id;
-        $role = Role::find($role_id);
-    
+        $role = Role::find($role_id);    
 
+
+        //assignRole
         $users->assignRole($role->name);
 
         return redirect()->route('staff.index');

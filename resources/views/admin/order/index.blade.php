@@ -92,7 +92,7 @@
                   <td>{{$order->codeno}}</td>
                   <td>{{$order->orderdate}}</td>
                   <td>{{number_format($order->total)}} Ks</td>
-                  <td>{{$order->waiter_id}}</td>
+                  <td>{{$order->staff->user->name}}</td>
                   <td>{{$order->table->name}}</td>
                 </tr>
                 @else
@@ -101,7 +101,7 @@
                   <td>{{$order->codeno}}</td>
                   <td>{{$order->orderdate}}</td>
                   <td>{{number_format($order->total)}} Ks</td>
-                  <td>{{$order->waiter_id}}</td>
+                  <td>{{$order->staff->user->name}}</td>
                   <td>{{$order->table->name}}</td>
                 </tr>
                 @endif

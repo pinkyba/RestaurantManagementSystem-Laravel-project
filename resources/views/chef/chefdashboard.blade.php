@@ -148,13 +148,21 @@
         <div class="row">
 
           @foreach($orders as $order)
-          @if($order->table->restaurant_id == $restaurant_id)
-            @if($order->status == 'order')
-              <a href="{{route('cheforderdetail',$order->id)}}" class="btn btn-info ml-4 mb-4"><p class="text-lg-center px-5 pt-4">Order From</p><p class="pb-3">{{$order->table->name}}</p></a>
-            @else
-              <a href="{{route('cheforderdetail',$order->id)}}" class="btn btn-success ml-4 mb-4"><p class="text-lg-center px-4 pt-4">Order Served Complete</p><p class="pb-4">{{$order->table->name}}</p></a>
-            @endif
-          @endif
+            @foreach($order->menu_items as $menu_item) 
+            <!-- only display order that is correspond with chef eg(စားပွဲတွေပဲပြချင်တာ၊ ဘီယာတို့အသောက်တွေကိုက barcourterdashboard မှာပဲပြချင်တာ-->
+        
+              @if($menu_item->menu_category->status == "chef")
+
+                @if($order->table->restaurant_id == $restaurant_id)
+                  @if($order->status == 'order')
+                    <a href="{{route('cheforderdetail',$order->id)}}" class="btn btn-info ml-4 mb-4"><p class="text-lg-center px-5 pt-4">Order From</p><p class="pb-3">{{$order->table->name}}</p></a>
+                  @else
+                    <a href="{{route('cheforderdetail',$order->id)}}" class="btn btn-success ml-4 mb-4"><p class="text-lg-center px-4 pt-4">Order Served Complete</p><p class="pb-4">{{$order->table->name}}</p></a>
+                  @endif
+                @endif
+              @endif
+
+            @endforeach
           @endforeach
 
           

@@ -51,7 +51,7 @@
        <div class="row">
         
         @foreach($order->menu_items as $menu_item)
-
+        
         @if($menu_item->menu_category->status == "chef")
         
         @php               

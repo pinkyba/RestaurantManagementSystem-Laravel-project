@@ -26,7 +26,7 @@ class Order extends Model
 
     public function staff()
     {
-        return $this->belongsTo('App\Staff');
+        return $this->belongsTo('App\Staff','waiter_id');
     }
 
 }
